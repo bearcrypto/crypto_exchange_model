@@ -1,4 +1,4 @@
-import 'package:crypto_exchange_data/src/exchange_data.dart';
+import 'package:crypto_exchange_model/src/exchange_data.dart';
 
 /// Represents a
 /// [candle stick](https://www.investopedia.com/articles/technical/02/121702.asp)

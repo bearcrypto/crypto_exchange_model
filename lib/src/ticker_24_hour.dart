@@ -1,4 +1,4 @@
-import 'package:crypto_exchange_data/src/exchange_data.dart';
+import 'package:crypto_exchange_model/src/exchange_data.dart';
 
 /// A snapshot of the [tradingPair]'s performance over the last 24 hours.
 ///
