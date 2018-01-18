@@ -1,5 +1,5 @@
 /// Classes which model information taken from crypto currency exchanges.
-library crypto_exchange_data;
+library crypto_exchange_model;
 
 export 'src/exchange_data.dart';
 export 'src/candle_stick.dart';
