@@ -6,28 +6,28 @@ import 'package:crypto_exchange_model/src/exchange_data.dart';
 class CandleStick extends ExchangeData {
 
   /// The date and time which the [CandleStick]'s data starts.
-  DateTime openTime;
+  final DateTime openTime;
 
   /// The amount of time this [CandleStick] covers.
-  Duration duration;
+  final Duration duration;
 
   /// The price of the [tradingPair.baseCoinSymbol] at [openTime].
-  double openPrice;
+  final double openPrice;
 
   /// the price of the [tradingPair.baseCoinSymbol] at the end of the [duration].
-  double closePrice;
+  final double closePrice;
 
   /// the highest price the [tradingPair.baseCoinSymbol] was traded from the
   /// [openTime] until the end of the [duration].
-  double highPrice;
+  final double highPrice;
 
   /// the lowest price the [tradingPair.baseCoinSymbol] was traded from the
   /// [openTime] until the end of the [duration].
-  double lowPrice;
+  final double lowPrice;
 
   /// the amount of the [tradingPair.baseCoinSymbol] that was traded from the
   /// [openTime] until the end of the [duration].
-  double volume;
+  final double volume;
 
   CandleStick(CoinTradingPair tradingPair, DateTime timestamp, this.openTime,
       this.duration, this.openPrice, this.closePrice, this.highPrice,

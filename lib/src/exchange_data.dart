@@ -9,10 +9,10 @@ abstract class ExchangeData {
 
   /// Identifies what exchange the data came from and to what [CoinTradingPair]
   /// it relates.
-  CoinTradingPair tradingPair;
+  final CoinTradingPair tradingPair;
 
   /// Indicates the date and time this information was relevant.
-  DateTime timestamp;
+  final DateTime timestamp;
 
   ExchangeData(this.tradingPair, this.timestamp);
 }
@@ -25,17 +25,17 @@ class CoinTradingPair {
   ///
   /// In the coin pairing LTC/BTC, LTC would be the base coin, its the coin that
   /// we're working with (trading, buying, describing, etc.).
-  String baseCoinSymbol;
+  final String baseCoinSymbol;
 
   /// The coin the [baseCoinSymbol]'s value is based on.
   ///
   /// In the coin pairing LTC/BTC, BTC would be the quote coin. Its the currency
   /// used to buy/sell or describe the value of the [baseCoinSymbol].
-  String quoteCoinSymbol;
+  final String quoteCoinSymbol;
 
   /// The name of the exchange the [baseCoinSymbol] and [quoteCoinSymbol] are
   /// being traded on
-  String exchangeName;
+ final String exchangeName;
 
   CoinTradingPair(this.baseCoinSymbol, this.quoteCoinSymbol, this.exchangeName);
 }

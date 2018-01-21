@@ -9,19 +9,19 @@ class Ticker24Hour extends ExchangeData{
 
   /// The amount of the [tradingPair.baseCoinSymbol] that was traded in the
   /// past 24 hours.
-  double volume24Hour;
+  final double volume24Hour;
 
   /// The amount of the [tradingPair.quoteCoinSymbol] that the
   /// [tradingPair.baseCoinSymbol] was selling for exactly 24 hours ago.
-  double openPrice24Hour;
+  final double openPrice24Hour;
 
   /// The highest amount of the [tradingPair.quoteCoinSymbol] that the
   /// [tradingPair.baseCoinSymbol] was selling for in the past 24 hours.
-  double highPrice24Hour;
+  final double highPrice24Hour;
 
   /// The lowest amount of the [tradingPair.quoteCoinSymbol] that the
   /// [tradingPair.baseCoinSymbol] was selling for in the past 24 hours.
-  double lowPrice24Hour;
+  final double lowPrice24Hour;
 
 
   Ticker24Hour(CoinTradingPair tradingPair, DateTime timestamp,
