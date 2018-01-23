@@ -22,9 +22,13 @@ class Ticker24Hour extends ExchangeData{
   /// The lowest amount of the [tradingPair.quoteCoinSymbol] that the
   /// [tradingPair.baseCoinSymbol] was selling for in the past 24 hours.
   final double lowPrice24Hour;
+  
+  /// The current price the coin pairing is trading at
+  ///
+  final double currentPrice;
 
 
   Ticker24Hour(CoinTradingPair tradingPair, DateTime timestamp,
       this.volume24Hour, this.openPrice24Hour, this.highPrice24Hour,
-      this.lowPrice24Hour) : super(tradingPair, timestamp);
+      this.lowPrice24Hour, this.currentPrice) : super(tradingPair, timestamp);
 }
