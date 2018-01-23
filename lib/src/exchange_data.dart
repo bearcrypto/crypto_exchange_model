@@ -16,11 +16,11 @@ abstract class ExchangeData {
 
   ExchangeData(this.tradingPair, this.timestamp);
 
-  Map toJson(){
-    Map jsonMap = {};
-    jsonMap["timestamp"] = this.timestamp.millisecondsSinceEpoch;
-    jsonMap["tradingPair"] = this.tradingPair.toJson();
-    return jsonMap;
+  Map toMap(){
+    Map objectMap = {};
+    objectMap["timestamp"] = this.timestamp.millisecondsSinceEpoch;
+    objectMap["tradingPair"] = this.tradingPair.toJson();
+    return objectMap;
   }
 }
 

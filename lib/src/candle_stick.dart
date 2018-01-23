@@ -34,15 +34,15 @@ class CandleStick extends ExchangeData {
       this.lowPrice, this.volume) : super(tradingPair, timestamp);
 
   Map toJson(){
-    Map jsonMap = {};
-    jsonMap["openTime"] = this.openTime.millisecondsSinceEpoch;
-    jsonMap["duration"] = this.duration.inMilliseconds;
-    jsonMap["openPrice"] = this.openPrice;
-    jsonMap["closePrice"] = this.closePrice;
-    jsonMap["highPrice"] = this.highPrice;
-    jsonMap["lowPrice"] = this.lowPrice;
-    jsonMap["volume"] = this.volume;
-    jsonMap.addAll(super.toJson());
-    return jsonMap;
+    Map objectMap = {};
+    objectMap["openTime"] = this.openTime.millisecondsSinceEpoch;
+    objectMap["duration"] = this.duration.inMilliseconds;
+    objectMap["openPrice"] = this.openPrice;
+    objectMap["closePrice"] = this.closePrice;
+    objectMap["highPrice"] = this.highPrice;
+    objectMap["lowPrice"] = this.lowPrice;
+    objectMap["volume"] = this.volume;
+    objectMap.addAll(super.toMap());
+    return objectMap;
   }
 }

@@ -103,6 +103,7 @@
       <li class="section-title"><a href="crypto_exchange_model/CandleStick-class.html#instance-methods">Methods</a></li>
       <li><a href="crypto_exchange_model/CandleStick/toJson.html">toJson</a></li>
       <li class="inherited"><a href="crypto_exchange_model/CandleStick/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="crypto_exchange_model/ExchangeData/toMap.html">toMap</a></li>
       <li class="inherited"><a href="crypto_exchange_model/CandleStick/toString.html">toString</a></li>
     </ol>
 
@@ -117,16 +118,16 @@
     <section class="summary source-code" id="source">
       <h2><span>Source</span> </h2>
       <pre class="prettyprint language-dart">Map toJson(){
-  Map jsonMap = {};
-  jsonMap[&quot;openTime&quot;] = this.openTime.millisecondsSinceEpoch;
-  jsonMap[&quot;duration&quot;] = this.duration.inMilliseconds;
-  jsonMap[&quot;openPrice&quot;] = this.openPrice;
-  jsonMap[&quot;closePrice&quot;] = this.closePrice;
-  jsonMap[&quot;highPrice&quot;] = this.highPrice;
-  jsonMap[&quot;lowPrice&quot;] = this.lowPrice;
-  jsonMap[&quot;volume&quot;] = this.volume;
-  jsonMap.addAll(super.toJson());
-  return jsonMap;
+  Map objectMap = {};
+  objectMap[&quot;openTime&quot;] = this.openTime.millisecondsSinceEpoch;
+  objectMap[&quot;duration&quot;] = this.duration.inMilliseconds;
+  objectMap[&quot;openPrice&quot;] = this.openPrice;
+  objectMap[&quot;closePrice&quot;] = this.closePrice;
+  objectMap[&quot;highPrice&quot;] = this.highPrice;
+  objectMap[&quot;lowPrice&quot;] = this.lowPrice;
+  objectMap[&quot;volume&quot;] = this.volume;
+  objectMap.addAll(super.toMap());
+  return objectMap;
 }</pre>
     </section>
 
