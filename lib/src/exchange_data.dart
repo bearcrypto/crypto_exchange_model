@@ -15,6 +15,13 @@ abstract class ExchangeData {
   final DateTime timestamp;
 
   ExchangeData(this.tradingPair, this.timestamp);
+
+  Map toJson(){
+    Map jsonMap = {};
+    jsonMap["timestamp"] = this.timestamp.millisecondsSinceEpoch;
+    jsonMap["tradingPair"] = this.tradingPair.toJson();
+    return jsonMap;
+  }
 }
 
 /// Models the necessary information for identifying what coin pairing and
@@ -38,4 +45,12 @@ class CoinTradingPair {
  final String exchangeName;
 
   CoinTradingPair(this.baseCoinSymbol, this.quoteCoinSymbol, this.exchangeName);
+
+  Map toJson(){
+    Map jsonMap = {};
+    jsonMap["baseCoinSymbol"] = this.baseCoinSymbol;
+    jsonMap["quoteCoinSymbol"] = this.quoteCoinSymbol;
+    jsonMap["exchangeName"] = this.exchangeName;
+    return jsonMap;
+  }
 }

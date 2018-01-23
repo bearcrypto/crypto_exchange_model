@@ -31,4 +31,15 @@ class Ticker24Hour extends ExchangeData{
   Ticker24Hour(CoinTradingPair tradingPair, DateTime timestamp,
       this.volume24Hour, this.openPrice24Hour, this.highPrice24Hour,
       this.lowPrice24Hour, this.currentPrice) : super(tradingPair, timestamp);
+
+  Map toJson(){
+    Map jsonMap = {};
+    jsonMap["volume24Hour"] = this.volume24Hour;
+    jsonMap["openPrice24Hour"] = this.openPrice24Hour;
+    jsonMap["highPrice24Hour"] = this.highPrice24Hour;
+    jsonMap["lowPrice24Hour"] = this.lowPrice24Hour;
+    jsonMap["currentPrice"] = this.currentPrice;
+    jsonMap.addAll(super.toJson());
+    return jsonMap;
+  }
 }
