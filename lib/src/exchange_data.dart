@@ -44,7 +44,11 @@ class CoinTradingPair {
   /// being traded on
  final String exchangeName;
 
-  CoinTradingPair(this.baseCoinSymbol, this.quoteCoinSymbol, this.exchangeName);
+  CoinTradingPair(String baseCoinSymbol, String quoteCoinSymbol, String exchangeName){
+    this.baseCoinSymbol = baseCoinSymbol.toLowerCase();
+    this.quoteCoinSymbol = quoteCoinSymbol.toLowerCase();
+    this.exchangeName = exchangeName.toLowerCase();
+  }
 
   Map toJson(){
     Map jsonMap = {};
