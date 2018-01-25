@@ -32,6 +32,7 @@ class Ticker24Hour extends ExchangeData{
       this.volume24Hour, this.openPrice24Hour, this.highPrice24Hour,
       this.lowPrice24Hour, this.currentPrice) : super(tradingPair, timestamp);
 
+  @override
   Map toMap(){
     Map objectMap = {};
     objectMap["volume24Hour"] = this.volume24Hour;

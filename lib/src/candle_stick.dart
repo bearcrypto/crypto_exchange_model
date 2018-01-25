@@ -33,6 +33,7 @@ class CandleStick extends ExchangeData {
       this.duration, this.openPrice, this.closePrice, this.highPrice,
       this.lowPrice, this.volume) : super(tradingPair, timestamp);
 
+  @override
   Map toMap(){
     Map objectMap = {};
     objectMap["openTime"] = this.openTime.millisecondsSinceEpoch;

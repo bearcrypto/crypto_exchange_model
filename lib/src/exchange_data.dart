@@ -19,7 +19,7 @@ abstract class ExchangeData {
   Map toMap(){
     Map objectMap = {};
     objectMap["timestamp"] = this.timestamp.millisecondsSinceEpoch;
-    objectMap["tradingPair"] = this.tradingPair.toJson();
+    objectMap.addAll(this.tradingPair.toMap());
     return objectMap;
   }
 }
@@ -50,11 +50,11 @@ class CoinTradingPair {
     this.exchangeName = exchangeName.toLowerCase();
   }
 
-  Map toJson(){
-    Map jsonMap = {};
-    jsonMap["baseCoinSymbol"] = this.baseCoinSymbol;
-    jsonMap["quoteCoinSymbol"] = this.quoteCoinSymbol;
-    jsonMap["exchangeName"] = this.exchangeName;
-    return jsonMap;
+  Map toMap(){
+    Map objectMap = {};
+    objectMap["baseCoinSymbol"] = this.baseCoinSymbol;
+    objectMap["quoteCoinSymbol"] = this.quoteCoinSymbol;
+    objectMap["exchangeName"] = this.exchangeName;
+    return objectMap;
   }
 }

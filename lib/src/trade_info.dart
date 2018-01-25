@@ -13,6 +13,7 @@ class TradeInfo extends ExchangeData{
   TradeInfo(CoinTradingPair tradingPair, DateTime timestamp, this.amountTraded,
       this.amountPaid) : super(tradingPair, timestamp);
 
+  @override
   Map toMap(){
     Map objectMap = {};
     objectMap["amountTraded"] = this.amountTraded;
