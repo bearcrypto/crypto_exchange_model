@@ -1,3 +1,5 @@
+part of crypto_exchange_model;
+
 /// An abstract class which acts as the base template for all data obtained from
 /// the exchanges.
 ///
@@ -5,9 +7,6 @@
 /// identify the data from the exchange. Any exchange data that has the same
 /// [tradingPair] and [timestamp] will be considered the same and thus not
 /// unique.
-
-import 'package:crypto_exchange_model/src/candle_stick.dart';
-
 abstract class ExchangeData {
 
   /// Identifies what exchange the data came from and to what [CoinTradingPair]
@@ -81,17 +80,22 @@ class ExchangeDataContainer {
     String e = exchangeData.tradingPair.exchangeName.toLowerCase();
     String rt = exchangeData.runtimeType.toString().toLowerCase();
     if(this._coinTradingPairMap[b] == null) this._coinTradingPairMap[b] = {};
-    if(this._coinTradingPairMap[b][q] == null) this._coinTradingPairMap[b][q] = {};
-    if(this._coinTradingPairMap[b][q][e] == null) this._coinTradingPairMap[b][q][e] = {};
-    if(exchangeData is CandleStick){
-      int d = exchangeData.duration.inSeconds;
-      int ot = exchangeData.openTime.millisecondsSinceEpoch;
-      if(this._coinTradingPairMap[b][q][e][rt] == null) this._coinTradingPairMap[b][q][e][rt] = {};
-      if(this._coinTradingPairMap[b][q][e][rt][d] == null) this._coinTradingPairMap[b][q][e][rt][d] = {};
-      this._coinTradingPairMap[b][q][e][rt][d][ot] = exchangeData;
+    if(exchangeData is CoinInfo){
+      this._coinTradingPairMap[b][rt] = exchangeData;
     } else {
-      this._coinTradingPairMap[b][q][e][rt] = exchangeData;
+      if(this._coinTradingPairMap[b][q] == null) this._coinTradingPairMap[b][q] = {};
+      if(this._coinTradingPairMap[b][q][e] == null) this._coinTradingPairMap[b][q][e] = {};
+      if(exchangeData is CandleStick){
+        int d = exchangeData.duration.inSeconds;
+        int ot = exchangeData.openTime.millisecondsSinceEpoch;
+        if(this._coinTradingPairMap[b][q][e][rt] == null) this._coinTradingPairMap[b][q][e][rt] = {};
+        if(this._coinTradingPairMap[b][q][e][rt][d] == null) this._coinTradingPairMap[b][q][e][rt][d] = {};
+        this._coinTradingPairMap[b][q][e][rt][d][ot] = exchangeData;
+      } else {
+        this._coinTradingPairMap[b][q][e][rt] = exchangeData;
+      }
     }
+
   }
 
   /// Helper method which makes it easier to add a list of [ExchangeData] as

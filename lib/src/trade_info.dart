@@ -1,4 +1,4 @@
-import 'package:crypto_exchange_model/src/exchange_data.dart';
+part of crypto_exchange_model;
 
 /// Store info about a trade that took place on an exchange.
 class TradeInfo extends ExchangeData{
