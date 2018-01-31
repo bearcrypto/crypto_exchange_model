@@ -10,6 +10,9 @@ class TradeInfo extends ExchangeData{
   /// the [amountTraded].
   double amountPaid;
 
+  TradeInfo.noFields(CoinTradingPair tradingPair, DateTime timestamp )
+      : super(tradingPair, timestamp);
+
   TradeInfo(CoinTradingPair tradingPair, DateTime timestamp, this.amountTraded,
       this.amountPaid) : super(tradingPair, timestamp);
 

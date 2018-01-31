@@ -42,6 +42,8 @@ class Ticker24Hour extends ExchangeData{
   ///
   static final int PRICEUNCHANGED = 4;
 
+  Ticker24Hour.noFields(CoinTradingPair tradingPair, DateTime timestamp )
+    : super(tradingPair, timestamp);
 
   Ticker24Hour(CoinTradingPair tradingPair, DateTime timestamp,
       this.volume24Hour, this.openPrice24Hour, this.highPrice24Hour,
