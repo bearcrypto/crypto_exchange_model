@@ -7,8 +7,6 @@ void main() {
 
   testCoinTradingPairConstructor();
   testCoinTradingPairToMap();
-
-  testExchangeDataContainer();
 }
 
 void testExchangeDataConstructor(){
