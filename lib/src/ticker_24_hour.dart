@@ -61,6 +61,10 @@ class Ticker24Hour extends ExchangeData{
     if(objectMap["highPrice24Hour"] != null) this.highPrice24Hour = objectMap["highPrice24Hour"];
     if(objectMap["lowPrice24Hour"] != null) this.lowPrice24Hour = objectMap["lowPrice24Hour"];
     if(objectMap["currentPrice"] != null) this.currentPrice = objectMap["currentPrice"];
+    if(objectMap["priceFlag"] != null && objectMap["priceFlag"] == PRICEUP
+        || objectMap["priceFlag"] == PRICEDOWN || objectMap["priceFlag"] == PRICEUNCHANGED){
+      this.priceFlag = objectMap["priceFlag"];
+    }
   }
 
   @override
@@ -71,6 +75,7 @@ class Ticker24Hour extends ExchangeData{
     if(this.highPrice24Hour != null) objectMap["highPrice24Hour"] = this.highPrice24Hour;
     if(this.lowPrice24Hour != null) objectMap["lowPrice24Hour"] = this.lowPrice24Hour;
     if(this.currentPrice != null) objectMap["currentPrice"] = this.currentPrice;
+    if(this.priceFlag != null) objectMap["priceFlag"] = this.priceFlag;
     objectMap.addAll(super.toMap());
     return objectMap;
   }
