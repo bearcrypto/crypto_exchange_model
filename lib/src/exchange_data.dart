@@ -46,11 +46,7 @@ class CoinTradingPair {
   /// being traded on
  String exchangeName;
 
-  CoinTradingPair(String baseCoinSymbol, String quoteCoinSymbol, String exchangeName){
-    this.baseCoinSymbol = baseCoinSymbol.toLowerCase();
-    this.quoteCoinSymbol = quoteCoinSymbol.toLowerCase();
-    this.exchangeName = exchangeName.toLowerCase();
-  }
+  CoinTradingPair(this.baseCoinSymbol, this.quoteCoinSymbol, this.exchangeName);
 
   Map toMap(){
     Map objectMap = {};
