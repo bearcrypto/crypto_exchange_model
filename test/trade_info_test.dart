@@ -1,5 +1,4 @@
-import 'package:crypto_exchange_model/src/exchange_data.dart';
-import 'package:crypto_exchange_model/src/trade_info.dart';
+import 'package:crypto_exchange_model/crypto_exchange_model.dart';
 import 'package:test/test.dart';
 
 

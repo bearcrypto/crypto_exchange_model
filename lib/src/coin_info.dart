@@ -5,7 +5,7 @@ class CoinInfo extends ExchangeData {
   String symbol;
   String algorithm;
   String proofType;
-  String sortOrder;
+  int sortOrder;
   String imageUrl;
 
   CoinInfo(this.name, String symbol, this.algorithm, this.proofType, this.sortOrder,
@@ -17,4 +17,19 @@ class CoinInfo extends ExchangeData {
       : super(new CoinTradingPair(symbol, "NA", "NA"), new DateTime.now()){
     this.symbol = symbol;
   }
+
+
+  @override
+  Map toMap(){
+    Map objectMap = {};
+    objectMap["name"] = this.name;
+    objectMap["symbol"] = this.symbol;
+    objectMap["algorithm"] = this.algorithm;
+    objectMap["proofType"] = this.proofType;
+    objectMap["sortOrder"] = this.sortOrder;
+    objectMap["imageUrl"] = this.imageUrl;
+    objectMap.addAll(super.toMap());
+    return objectMap;
+  }
+
 }

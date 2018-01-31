@@ -1,4 +1,4 @@
-import 'package:crypto_exchange_model/src/exchange_data.dart';
+import 'package:crypto_exchange_model/crypto_exchange_model.dart';
 import "package:test/test.dart";
 
 void main() {
@@ -7,6 +7,8 @@ void main() {
 
   testCoinTradingPairConstructor();
   testCoinTradingPairToMap();
+
+  testExchangeDataContainer();
 }
 
 void testExchangeDataConstructor(){

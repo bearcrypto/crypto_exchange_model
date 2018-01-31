@@ -1,6 +1,4 @@
-import 'package:crypto_exchange_model/src/candle_stick.dart';
-import 'package:crypto_exchange_model/src/exchange_data.dart';
-import 'package:crypto_exchange_model/src/ticker_24_hour.dart';
+import 'package:crypto_exchange_model/crypto_exchange_model.dart';
 import 'package:test/test.dart';
 
 
