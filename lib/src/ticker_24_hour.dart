@@ -47,7 +47,13 @@ class Ticker24Hour extends ExchangeData{
 
   Ticker24Hour(CoinTradingPair tradingPair, DateTime timestamp,
       this.volume24Hour, this.openPrice24Hour, this.highPrice24Hour,
-      this.lowPrice24Hour, this.currentPrice, this.priceFlag) : super(tradingPair, timestamp);
+      this.lowPrice24Hour, this.currentPrice, int priceFlag) : super(tradingPair, timestamp){
+    if(priceFlag == PRICEUP || priceFlag == PRICEDOWN || priceFlag == PRICEUNCHANGED){
+      this.priceFlag = priceFlag;
+    } else {
+      this.priceFlag = PRICEUNCHANGED;
+    }
+  }
 
   Ticker24Hour.fromMap(Map objectMap) : super.fromMap(objectMap){
     if(objectMap["volume24Hour"] != null) this.volume24Hour = objectMap["volume24Hour"];
