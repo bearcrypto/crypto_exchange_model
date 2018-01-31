@@ -11,12 +11,17 @@ abstract class ExchangeData {
 
   /// Identifies what exchange the data came from and to what [CoinTradingPair]
   /// it relates.
-  final CoinTradingPair tradingPair;
+  CoinTradingPair tradingPair;
 
   /// Indicates the date and time this information was relevant.
-  final DateTime timestamp;
+  DateTime timestamp;
 
   ExchangeData(this.tradingPair, this.timestamp);
+
+  ExchangeData.fromMap(Map objectMap){
+    if(objectMap["timestamp"] != null) this.timestamp = new DateTime.fromMillisecondsSinceEpoch(objectMap["timestamp"]);
+    this.tradingPair = new CoinTradingPair.fromMap(objectMap);
+  }
 
   Map toMap(){
     Map objectMap = {};
@@ -48,11 +53,17 @@ class CoinTradingPair {
 
   CoinTradingPair(this.baseCoinSymbol, this.quoteCoinSymbol, this.exchangeName);
 
+  CoinTradingPair.fromMap(Map objectMap) {
+    if(objectMap["baseCoinSymbol"] != null) this.baseCoinSymbol = objectMap["baseCoinSymbol"];
+    if(objectMap["quoteCoinSymbol"] != null) this.quoteCoinSymbol = objectMap["quoteCoinSymbol"];
+    if(objectMap["exchangeName"] != null) this.exchangeName = objectMap["exchangeName"];
+  }
+
   Map toMap(){
     Map objectMap = {};
-    objectMap["baseCoinSymbol"] = this.baseCoinSymbol;
-    objectMap["quoteCoinSymbol"] = this.quoteCoinSymbol;
-    objectMap["exchangeName"] = this.exchangeName;
+    if(this.baseCoinSymbol != null) objectMap["baseCoinSymbol"] = this.baseCoinSymbol;
+    if(this.quoteCoinSymbol != null) objectMap["quoteCoinSymbol"] = this.quoteCoinSymbol;
+    if(this.exchangeName != null) objectMap["exchangeName"] = this.exchangeName;
     return objectMap;
   }
 }
@@ -77,18 +88,27 @@ class ExchangeDataContainer {
     String rt = exchangeData.runtimeType.toString().toLowerCase();
     if(this._coinTradingPairMap[b] == null) this._coinTradingPairMap[b] = {};
     if(exchangeData is CoinInfo){
-      this._coinTradingPairMap[b][rt] = exchangeData;
+      if(this._coinTradingPairMap[b][rt] == null) this._coinTradingPairMap[b][rt] = {};
+      exchangeData.toMap().forEach((key, value){
+        this._coinTradingPairMap[b][rt][key] = value;
+      });
+      this._coinTradingPairMap[b][rt] = exchangeData.toMap();
     } else {
       if(this._coinTradingPairMap[b][q] == null) this._coinTradingPairMap[b][q] = {};
       if(this._coinTradingPairMap[b][q][e] == null) this._coinTradingPairMap[b][q][e] = {};
+      if(this._coinTradingPairMap[b][q][e][rt] == null) this._coinTradingPairMap[b][q][e][rt] = {};
       if(exchangeData is CandleStick){
         int d = exchangeData.duration.inSeconds;
         int ot = exchangeData.openTime.millisecondsSinceEpoch;
-        if(this._coinTradingPairMap[b][q][e][rt] == null) this._coinTradingPairMap[b][q][e][rt] = {};
         if(this._coinTradingPairMap[b][q][e][rt][d] == null) this._coinTradingPairMap[b][q][e][rt][d] = {};
-        this._coinTradingPairMap[b][q][e][rt][d][ot] = exchangeData;
+        if(this._coinTradingPairMap[b][q][e][rt][d][ot] == null) this._coinTradingPairMap[b][q][e][rt][d][ot] = {};
+        exchangeData.toMap().forEach((key, value){
+          this._coinTradingPairMap[b][q][e][rt][d][ot][key] = value;
+        });
       } else {
-        this._coinTradingPairMap[b][q][e][rt] = exchangeData;
+        exchangeData.toMap().forEach((key, value){
+          this._coinTradingPairMap[b][q][e][rt][key] = value;
+        });
       }
     }
 

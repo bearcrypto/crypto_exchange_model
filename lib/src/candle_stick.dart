@@ -5,43 +5,53 @@ part of crypto_exchange_model;
 class CandleStick extends ExchangeData {
 
   /// The date and time which the [CandleStick]'s data starts.
-  final DateTime openTime;
+  DateTime openTime;
 
   /// The amount of time this [CandleStick] covers.
-  final Duration duration;
+  Duration duration;
 
   /// The price of the [tradingPair.baseCoinSymbol] at [openTime].
-  final double openPrice;
+  double openPrice;
 
   /// the price of the [tradingPair.baseCoinSymbol] at the end of the [duration].
-  final double closePrice;
+  double closePrice;
 
   /// the highest price the [tradingPair.baseCoinSymbol] was traded from the
   /// [openTime] until the end of the [duration].
-  final double highPrice;
+  double highPrice;
 
   /// the lowest price the [tradingPair.baseCoinSymbol] was traded from the
   /// [openTime] until the end of the [duration].
-  final double lowPrice;
+  double lowPrice;
 
   /// the amount of the [tradingPair.baseCoinSymbol] that was traded from the
   /// [openTime] until the end of the [duration].
-  final double volume;
+  double volume;
 
   CandleStick(CoinTradingPair tradingPair, DateTime timestamp, this.openTime,
       this.duration, this.openPrice, this.closePrice, this.highPrice,
       this.lowPrice, this.volume) : super(tradingPair, timestamp);
 
+  CandleStick.fromMap(Map objectMap) : super.fromMap(objectMap) {
+    if(objectMap["openTime"] != null) this.openTime = new DateTime.fromMillisecondsSinceEpoch(objectMap["openTime"]);
+    if(objectMap["duration"] != null) this.duration = new Duration(milliseconds: objectMap["duration"]);
+    if(objectMap["openPrice"] != null) this.openPrice = objectMap["openPrice"];
+    if(objectMap["closePrice"] != null) this.closePrice = objectMap["closePrice"];
+    if(objectMap["highPrice"] != null) this.highPrice = objectMap["highPrice"];
+    if(objectMap["lowPrice"] != null) this.lowPrice = objectMap["lowPrice"];
+    if(objectMap["volume"] != null) this.volume = objectMap["volume"];
+  }
+
   @override
   Map toMap(){
     Map objectMap = {};
-    objectMap["openTime"] = this.openTime.millisecondsSinceEpoch;
-    objectMap["duration"] = this.duration.inMilliseconds;
-    objectMap["openPrice"] = this.openPrice;
-    objectMap["closePrice"] = this.closePrice;
-    objectMap["highPrice"] = this.highPrice;
-    objectMap["lowPrice"] = this.lowPrice;
-    objectMap["volume"] = this.volume;
+    if(this.openTime != null) objectMap["openTime"] = this.openTime.millisecondsSinceEpoch;
+    if(this.duration != null) objectMap["duration"] = this.duration.inMilliseconds;
+    if(this.openPrice != null) objectMap["openPrice"] = this.openPrice;
+    if(this.closePrice != null) objectMap["closePrice"] = this.closePrice;
+    if(this.highPrice != null) objectMap["highPrice"] = this.highPrice;
+    if(this.lowPrice != null) objectMap["lowPrice"] = this.lowPrice;
+    if(this.volume != null) objectMap["volume"] = this.volume;
     objectMap.addAll(super.toMap());
     return objectMap;
   }

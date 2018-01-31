@@ -17,12 +17,12 @@ void testTicker24HourConstructor(){
     double highPrice24Hour = 3.0;
     double lowPrice24Hour = 4.0;
     double currentPrice = 5.0;
+    int priceFlag = Ticker24Hour.PRICEUP;
 
 
     Ticker24Hour ticker24hour = new Ticker24Hour(tradingPair, timestamp,
         volume24Hour, openPrice24Hour, highPrice24Hour, lowPrice24Hour,
-        currentPrice
-    );
+        currentPrice, priceFlag);
 
     expect(ticker24hour.tradingPair, equals(tradingPair));
     expect(ticker24hour.timestamp, equals(timestamp));
@@ -31,8 +31,7 @@ void testTicker24HourConstructor(){
     expect(ticker24hour.highPrice24Hour, equals(highPrice24Hour));
     expect(ticker24hour.lowPrice24Hour, equals(lowPrice24Hour));
     expect(ticker24hour.currentPrice, equals(currentPrice));
-
-
+    expect(ticker24hour.priceFlag, equals(priceFlag));
   });
 }
 

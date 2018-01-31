@@ -4,20 +4,25 @@ part of crypto_exchange_model;
 class TradeInfo extends ExchangeData{
 
   /// The amount of the [tradingPair.baseCoinSymbol] that got traded.
-  final double amountTraded;
+  double amountTraded;
 
   /// the amount of the [tradingPair.quoteCoinSymbol] that was paid for
   /// the [amountTraded].
-  final double amountPaid;
+  double amountPaid;
 
   TradeInfo(CoinTradingPair tradingPair, DateTime timestamp, this.amountTraded,
       this.amountPaid) : super(tradingPair, timestamp);
 
+  TradeInfo.fromMap(Map objectMap) : super.fromMap(objectMap){
+    if(objectMap["amountTraded"] != null) this.amountTraded = objectMap["amountTraded"];
+    if(objectMap["amountPaid"] != null) this.amountPaid = objectMap["amountPaid"];
+  }
+
   @override
   Map toMap(){
     Map objectMap = {};
-    objectMap["amountTraded"] = this.amountTraded;
-    objectMap["amountPaid"] = this.amountPaid;
+    if(this.amountTraded != null) objectMap["amountTraded"] = this.amountTraded;
+    if(this.amountPaid != null) objectMap["amountPaid"] = this.amountPaid;
     objectMap.addAll(super.toMap());
     return objectMap;
   }
