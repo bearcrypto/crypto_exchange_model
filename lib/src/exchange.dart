@@ -9,5 +9,26 @@ class Exchange {
   List<CoinPair> coinPairs;
 
   Exchange(this.name, this.coinPairs);
+
+  Exchange.fromMap(Map objectMap){
+    if(objectMap["name"] != null) this.name = objectMap["name"];
+    if(objectMap["coinPairs"] != null && objectMap["coinPairs"] is List){
+      this.coinPairs = new List<CoinPair>();
+      objectMap["coinPairs"].forEach((coinPairMap){
+        coinPairs.add(new CoinPair.fromMap(coinPairMap));
+      });
+    }
+  }
+
+  Map toMap(){
+    Map objectMap = {};
+    if(this.name != null) objectMap["name"] = this.name;
+    if(this.coinPairs != null){
+      objectMap["coinPairs"] = new List<Map>();
+      this.coinPairs.forEach((coinPair){
+        objectMap["coinPairs"].add(coinPair.toMap());
+      });
+    }
+  }
 }
 
