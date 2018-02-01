@@ -8,9 +8,18 @@ class CoinInfo {
   int sortOrder;
   String imageUrl;
   String id;
+  String description;
+  String url;
+  DateTime startDate;
+  int totalCoinSupply;
+  int totalCoinsMined;
 
   CoinInfo(this.name, this.symbol, this.algorithm, this.proofType, this.sortOrder,
       this.imageUrl, this.id);
+
+  CoinInfo.extended(this.name, this.symbol, this.algorithm, this.proofType, this.sortOrder,
+      this.imageUrl, this.id, this.description, this.url, this.startDate, this.totalCoinSupply,
+      this.totalCoinsMined);
 
   CoinInfo.nameAndSymbol(this.name, this.symbol);
 
@@ -24,6 +33,11 @@ class CoinInfo {
     if(objectMap["sortOrder"] != null) this.sortOrder = objectMap["sortOrder"];
     if(objectMap["imageUrl"] != null) this.imageUrl = objectMap["imageUrl"];
     if(objectMap["id"] != null) this.id = objectMap["id"];
+    if(objectMap["description"] != null) this.description = objectMap["description"];
+    if(objectMap["url"] != null) this.url = objectMap["url"];
+    if(objectMap["startDate"] != null) this.startDate = objectMap["startDate"];
+    if(objectMap["totalCoinSupply"] != null) this.totalCoinSupply = objectMap["totalCoinSupply"];
+    if(objectMap["totalCoinsMined"] != null) this.totalCoinsMined = objectMap["totalCoinsMined"];
   }
 
 
@@ -36,6 +50,11 @@ class CoinInfo {
     if(this.sortOrder != null) objectMap["sortOrder"] = this.sortOrder;
     if(this.imageUrl != null) objectMap["imageUrl"] = this.imageUrl;
     if(this.id != null) objectMap["id"] = this.id;
+    if(this.description != null) objectMap["description"] = this.description;
+    if(this.url != null) objectMap["url"] = this.url;
+    if(this.startDate != null) objectMap["startDate"] = this.startDate;
+    if(this.totalCoinSupply != null) this.totalCoinSupply = this.totalCoinSupply;
+    if(this.totalCoinsMined != null) objectMap["totalCoinsMined"] = this.totalCoinsMined;
     return objectMap;
   }
 
