@@ -13,13 +13,14 @@ class CoinInfo {
   DateTime startDate;
   int totalCoinSupply;
   int totalCoinsMined;
+  String twitterHandle;
 
   CoinInfo(this.name, this.symbol, this.algorithm, this.proofType, this.sortOrder,
       this.imageUrl, this.id);
 
   CoinInfo.extended(this.name, this.symbol, this.algorithm, this.proofType, this.sortOrder,
       this.imageUrl, this.id, this.description, this.url, this.startDate, this.totalCoinSupply,
-      this.totalCoinsMined);
+      this.totalCoinsMined, this.twitterHandle);
 
   CoinInfo.nameAndSymbol(this.name, this.symbol);
 
@@ -38,6 +39,7 @@ class CoinInfo {
     if(objectMap["startDate"] != null) this.startDate = objectMap["startDate"];
     if(objectMap["totalCoinSupply"] != null) this.totalCoinSupply = objectMap["totalCoinSupply"];
     if(objectMap["totalCoinsMined"] != null) this.totalCoinsMined = objectMap["totalCoinsMined"];
+    if(objectMap["twitterHandle"] != null) this.twitterHandle = objectMap["twitterHandle"];
   }
 
 
@@ -55,6 +57,7 @@ class CoinInfo {
     if(this.startDate != null) objectMap["startDate"] = this.startDate;
     if(this.totalCoinSupply != null) this.totalCoinSupply = this.totalCoinSupply;
     if(this.totalCoinsMined != null) objectMap["totalCoinsMined"] = this.totalCoinsMined;
+    if(this.twitterHandle != null) objectMap["twitterHandle"] = this.twitterHandle;
     return objectMap;
   }
 
