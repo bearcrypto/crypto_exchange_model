@@ -55,7 +55,7 @@ class CoinInfo {
     if(this.description != null) objectMap["description"] = this.description;
     if(this.url != null) objectMap["url"] = this.url;
     if(this.startDate != null) objectMap["startDate"] = this.startDate;
-    if(this.totalCoinSupply != null) this.totalCoinSupply = this.totalCoinSupply;
+    if(this.totalCoinSupply != null) objectMap["totalCoinsSupply"] = this.totalCoinSupply;
     if(this.totalCoinsMined != null) objectMap["totalCoinsMined"] = this.totalCoinsMined;
     if(this.twitterHandle != null) objectMap["twitterHandle"] = this.twitterHandle;
     return objectMap;
