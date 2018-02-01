@@ -31,10 +31,9 @@ abstract class ExchangeData {
   }
 }
 
-/// Models the necessary information for identifying what coin pairing and
-/// exchange a piece of [ExchangeData] relates to.
-class CoinTradingPair {
-
+/// Models a crypto coin pairing
+///
+class CoinPair {
   /// The main coin that is being dealt with
   ///
   /// In the coin pairing LTC/BTC, LTC would be the base coin, its the coin that
@@ -47,25 +46,43 @@ class CoinTradingPair {
   /// used to buy/sell or describe the value of the [baseCoinSymbol].
   String quoteCoinSymbol;
 
-  /// The name of the exchange the [baseCoinSymbol] and [quoteCoinSymbol] are
-  /// being traded on
- String exchangeName;
+  CoinPair(this.baseCoinSymbol, this.quoteCoinSymbol);
 
-  CoinTradingPair(this.baseCoinSymbol, this.quoteCoinSymbol, this.exchangeName);
-
-  CoinTradingPair.fromMap(Map objectMap) {
+  CoinPair.fromMap(Map objectMap){
     if(objectMap["baseCoinSymbol"] != null) this.baseCoinSymbol = objectMap["baseCoinSymbol"];
     if(objectMap["quoteCoinSymbol"] != null) this.quoteCoinSymbol = objectMap["quoteCoinSymbol"];
-    if(objectMap["exchangeName"] != null) this.exchangeName = objectMap["exchangeName"];
   }
 
   Map toMap(){
     Map objectMap = {};
     if(this.baseCoinSymbol != null) objectMap["baseCoinSymbol"] = this.baseCoinSymbol;
     if(this.quoteCoinSymbol != null) objectMap["quoteCoinSymbol"] = this.quoteCoinSymbol;
-    if(this.exchangeName != null) objectMap["exchangeName"] = this.exchangeName;
     return objectMap;
   }
+}
+
+/// Models the necessary information for identifying what coin pairing and
+/// exchange a piece of [ExchangeData] relates to.
+class CoinTradingPair extends CoinPair {
+
+  /// The name of the exchange the [baseCoinSymbol] and [quoteCoinSymbol] are
+  /// being traded on
+ String exchangeName;
+
+  CoinTradingPair(String baseCoinSymbol, String quoteCoinSymbol, this.exchangeName)
+    : super(baseCoinSymbol, quoteCoinSymbol);
+
+  CoinTradingPair.fromMap(Map objectMap) : super.fromMap(objectMap) {
+    if(objectMap["exchangeName"] != null) this.exchangeName = objectMap["exchangeName"];
+  }
+
+  Map toMap(){
+    Map objectMap = {};
+    if(this.exchangeName != null) objectMap["exchangeName"] = this.exchangeName;
+    objectMap.addAll(super.toMap());
+    return objectMap;
+  }
+
 }
 
 /// Acts as a container for storing information about [CoinTradingPair]s.
