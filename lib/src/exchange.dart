@@ -29,6 +29,7 @@ class Exchange {
         objectMap["coinPairs"].add(coinPair.toMap());
       });
     }
+    return objectMap;
   }
 }
 
