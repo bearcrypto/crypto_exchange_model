@@ -8,4 +8,5 @@ part 'src/candle_stick.dart';
 part 'src/ticker_24_hour.dart';
 part 'src/trade_info.dart';
 part 'src/coin_info.dart';
+part 'src/exchange.dart';
 

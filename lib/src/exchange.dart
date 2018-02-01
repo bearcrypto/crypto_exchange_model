@@ -1,4 +1,4 @@
-import 'package:crypto_exchange_model/crypto_exchange_model.dart';
+part of crypto_exchange_model;
 
 /// Models a crypto currency exchange.
 ///
