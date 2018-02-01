@@ -28,7 +28,7 @@ class MiningRig {
     if(objectMap["cost"] != null) this.cost = objectMap["cost"];
     if(objectMap["currency"] != null) this.currency = objectMap["currency"];
     if(objectMap["powerConsumption"] != null) this.powerConsumption = objectMap["powerConsumption"];
-    if(objectMap["currencyAvailable"] != null) this.currencyAvailable = objectMap["currencyAvailable"];
+    if(objectMap["currencyAvailable"] != null) this.currencyAvailable = new CoinInfo.fromMap(objectMap["currencyAvailable"]);
     if(objectMap["equipmentType"] != null) this.equipmentType = objectMap["equipmentType"];
   }
 
@@ -43,7 +43,7 @@ class MiningRig {
     if(this.cost != null) objectMap["cost"] = this.cost;
     if(this.currency != null) objectMap["currency"] = this.currency;
     if(this.powerConsumption != null) objectMap["powerConsumption"] = this.powerConsumption;
-    if(this.currencyAvailable != null) objectMap["currencyAvailable"] = this.currencyAvailable;
+    if(this.currencyAvailable != null) objectMap["currencyAvailable"] = this.currencyAvailable.toMap();
     if(this.equipmentType != null) objectMap["equipmentType"] = this.equipmentType;
     return objectMap;
   }
