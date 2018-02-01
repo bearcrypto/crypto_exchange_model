@@ -12,7 +12,7 @@ class CoinInfo {
   String url;
   DateTime startDate;
   int totalCoinSupply;
-  int totalCoinsMined;
+  double totalCoinsMined;
   String twitterHandle;
 
   CoinInfo(this.name, this.symbol, this.algorithm, this.proofType, this.sortOrder,
