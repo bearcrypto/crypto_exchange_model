@@ -23,7 +23,9 @@ class TradeInfo extends ExchangeData{
 
   TradeInfo(CoinTradingPair tradingPair, DateTime timestamp, this.amountTraded,
       this.amountPaid, int flag) : super(tradingPair, timestamp){
-    if(flag != BUY_FLAG || flag != SELL_FLAG || flag != UNKNOWN_FLAG){
+    if(flag == BUY_FLAG || flag == SELL_FLAG || flag == UNKNOWN_FLAG){
+      this.flag = flag;
+    } else {
       this.flag = UNKNOWN_FLAG;
     }
   }
