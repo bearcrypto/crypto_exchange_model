@@ -1,3 +1,5 @@
+part of crypto_exchange_model;
+
 class News {
   String title;
   String url;

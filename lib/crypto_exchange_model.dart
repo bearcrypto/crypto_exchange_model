@@ -10,4 +10,5 @@ part 'package:crypto_exchange_model/src/exchange_data/trade_info.dart';
 part 'src/coin_info.dart';
 part 'src/exchange.dart';
 part 'src/mining_rig.dart';
+part 'src/news.dart';
 
