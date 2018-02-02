@@ -20,6 +20,14 @@ class Exchange {
     }
   }
 
+  static List<CoinTradingPair> convertExchangeToCoinTradingPairs(Exchange exchange){
+    List<CoinTradingPair> coinTradingPairs = new List<CoinTradingPair>();
+    exchange.coinPairs.forEach((coinPair){
+      coinTradingPairs.add(new CoinTradingPair(coinPair.baseCoinSymbol, coinPair.quoteCoinSymbol, exchange.name));
+    });
+    return coinTradingPairs;
+  }
+
   Map toMap(){
     Map objectMap = {};
     if(this.name != null) objectMap["name"] = this.name;

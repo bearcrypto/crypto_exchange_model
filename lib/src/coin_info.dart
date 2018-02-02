@@ -42,6 +42,21 @@ class CoinInfo {
     if(objectMap["twitterHandle"] != null) this.twitterHandle = objectMap["twitterHandle"];
   }
 
+  static List<CoinTradingPair> getAllCoinTradingPairsForQuoteCoin(String quoteCoinSymbol, List<Exchange> exchanges, [String exchangeName]){
+    Map<String, bool> coinTradingPairsMap = {};
+    exchanges.forEach((Exchange exchange){
+      exchange.coinPairs.forEach((coinPair){
+        if(coinPair.quoteCoinSymbol == quoteCoinSymbol){
+          coinTradingPairsMap[coinPair.baseCoinSymbol] = true;
+        }
+      });
+    });
+    List<CoinTradingPair> coinTradingPairs = new List<CoinTradingPair>();
+    coinTradingPairsMap.forEach((baseCoinSymbol, boolValue){
+      coinTradingPairs.add(new CoinTradingPair(baseCoinSymbol, quoteCoinSymbol, exchangeName != null ? exchangeName : "NA"));
+    });
+    return coinTradingPairs;
+  }
 
   Map toMap(){
     Map objectMap = {};
