@@ -64,6 +64,7 @@ _helpers
 # Files and directories created by pub
 .packages
 .pub/
+bin/
 build/
 # Remove the following pattern if you wish to check in your lock file
 pubspec.lock
