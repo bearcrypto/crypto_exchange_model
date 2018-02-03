@@ -106,11 +106,8 @@ class ExchangeDataContainer {
     String rt = exchangeData.runtimeType.toString().toLowerCase();
     if(this._exchangeDataMap[b] == null) this._exchangeDataMap[b] = {};
     if(exchangeData is CoinInfo){
-      if(this._exchangeDataMap[b][rt] == null) this._exchangeDataMap[b][rt] = {};
-      exchangeData.toMap().forEach((key, value){
-        this._exchangeDataMap[b][rt][key] = value;
-      });
-      this._exchangeDataMap[b][rt] = exchangeData.toMap();
+      if(this._exchangeDataMap[b] == null) this._exchangeDataMap[b][rt] = {};
+      this._exchangeDataMap[b] = exchangeData.toMap();
     } else {
       if(this._exchangeDataMap[b][q] == null) this._exchangeDataMap[b][q] = {};
       if(this._exchangeDataMap[b][q][e] == null) this._exchangeDataMap[b][q][e] = {};
