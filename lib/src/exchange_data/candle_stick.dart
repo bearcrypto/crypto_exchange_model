@@ -57,6 +57,13 @@ class CandleStick extends ExchangeData {
     return result;
   }
 
+  static void removeMatchingCandleSticks(List<CandleStick> listOfCandleSticks,
+      Duration duration, CoinTradingPair coinTradingPair){
+    listOfCandleSticks.removeWhere((candleStick){
+      return candleStick.duration.inMilliseconds == duration.inMilliseconds;
+    });
+  }
+
   static void saveCandleStickInList(CandleStick candleStick, List<CandleStick> listOfCandleSticks){
     List<CandleStick> possibleMatches = getMatchingCandleSticks(listOfCandleSticks, candleStick.duration, candleStick.tradingPair);
     bool updatedExistingCandleStick = false;
