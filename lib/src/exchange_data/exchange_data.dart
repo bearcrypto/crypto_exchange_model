@@ -92,39 +92,40 @@ class CoinTradingPair extends CoinPair {
 class ExchangeDataContainer {
   /// The base data structure of the [ExchangeDataContainer].
   ///
-  Map _coinTradingPairMap = new Map();
+  Map _exchangeDataMap = new Map();
+  Map get exchangeDataMap => this._exchangeDataMap;
 
   /// Adds (or updates) the exchange data for a specific [CoinTradingPair].
   /// This function will automatically place the exchange data in the appropriate
-  /// location in the [_coinTradingPairMap];
+  /// location in the [_exchangeDataMap];
   void addExchangeData(ExchangeData exchangeData){
     // Names intentionally shortened to increase code readability
     String b = exchangeData.tradingPair.baseCoinSymbol.toLowerCase();
     String q = exchangeData.tradingPair.quoteCoinSymbol.toLowerCase();
     String e = exchangeData.tradingPair.exchangeName.toLowerCase();
     String rt = exchangeData.runtimeType.toString().toLowerCase();
-    if(this._coinTradingPairMap[b] == null) this._coinTradingPairMap[b] = {};
+    if(this._exchangeDataMap[b] == null) this._exchangeDataMap[b] = {};
     if(exchangeData is CoinInfo){
-      if(this._coinTradingPairMap[b][rt] == null) this._coinTradingPairMap[b][rt] = {};
+      if(this._exchangeDataMap[b][rt] == null) this._exchangeDataMap[b][rt] = {};
       exchangeData.toMap().forEach((key, value){
-        this._coinTradingPairMap[b][rt][key] = value;
+        this._exchangeDataMap[b][rt][key] = value;
       });
-      this._coinTradingPairMap[b][rt] = exchangeData.toMap();
+      this._exchangeDataMap[b][rt] = exchangeData.toMap();
     } else {
-      if(this._coinTradingPairMap[b][q] == null) this._coinTradingPairMap[b][q] = {};
-      if(this._coinTradingPairMap[b][q][e] == null) this._coinTradingPairMap[b][q][e] = {};
-      if(this._coinTradingPairMap[b][q][e][rt] == null) this._coinTradingPairMap[b][q][e][rt] = {};
+      if(this._exchangeDataMap[b][q] == null) this._exchangeDataMap[b][q] = {};
+      if(this._exchangeDataMap[b][q][e] == null) this._exchangeDataMap[b][q][e] = {};
+      if(this._exchangeDataMap[b][q][e][rt] == null) this._exchangeDataMap[b][q][e][rt] = {};
       if(exchangeData is CandleStick){
         int d = exchangeData.duration.inSeconds;
         int ot = exchangeData.openTime.millisecondsSinceEpoch;
-        if(this._coinTradingPairMap[b][q][e][rt][d] == null) this._coinTradingPairMap[b][q][e][rt][d] = {};
-        if(this._coinTradingPairMap[b][q][e][rt][d][ot] == null) this._coinTradingPairMap[b][q][e][rt][d][ot] = {};
+        if(this._exchangeDataMap[b][q][e][rt][d] == null) this._exchangeDataMap[b][q][e][rt][d] = {};
+        if(this._exchangeDataMap[b][q][e][rt][d][ot] == null) this._exchangeDataMap[b][q][e][rt][d][ot] = {};
         exchangeData.toMap().forEach((key, value){
-          this._coinTradingPairMap[b][q][e][rt][d][ot][key] = value;
+          this._exchangeDataMap[b][q][e][rt][d][ot][key] = value;
         });
       } else {
         exchangeData.toMap().forEach((key, value){
-          this._coinTradingPairMap[b][q][e][rt][key] = value;
+          this._exchangeDataMap[b][q][e][rt][key] = value;
         });
       }
     }
@@ -139,14 +140,14 @@ class ExchangeDataContainer {
     });
   }
 
-  /// Removes all of the [CandleStick] data from the [_coinTradingPairMap].
+  /// Removes all of the [CandleStick] data from the [_exchangeDataMap].
   ///
   /// Unlike other types of [ExchangeData], [CandleStick] data is more plentiful
   /// and therefore has the potential to take up more memory than other types of
   /// data.
   ///
   /// This method provides clients with a way to easily remove all of the
-  /// [CandleStick] data that might have built up in the [_coinTradingPairMap], and
+  /// [CandleStick] data that might have built up in the [_exchangeDataMap], and
   /// clear out some memory.
   void removeCandleSticksForCoinTradingPair(CoinTradingPair coinTradingPair){
     CandleStick candleStick = new CandleStick(null, null, null, null, null, null, null, null, null);
@@ -154,27 +155,27 @@ class ExchangeDataContainer {
     String q = coinTradingPair.quoteCoinSymbol.toLowerCase();
     String e = coinTradingPair.exchangeName.toLowerCase();
     String rt = candleStick.runtimeType.toString().toLowerCase();
-    if(this._coinTradingPairMap[b] != null && this._coinTradingPairMap[b][q] != null
-    && this._coinTradingPairMap[b][q][e] != null && this._coinTradingPairMap[b][q][e][rt] != null){
-      this._coinTradingPairMap[b][q][e][rt] = null;
+    if(this._exchangeDataMap[b] != null && this._exchangeDataMap[b][q] != null
+    && this._exchangeDataMap[b][q][e] != null && this._exchangeDataMap[b][q][e][rt] != null){
+      this._exchangeDataMap[b][q][e][rt] = null;
     }
   }
 
   /// Removes all of the informaiton stored about a specific [CoinTradingPair]
-  /// from the [_coinTradingPairMap];
+  /// from the [_exchangeDataMap];
   void removeCoinTradingPair(CoinTradingPair coinTradingPair){
     String b = coinTradingPair.baseCoinSymbol.toLowerCase();
     String q = coinTradingPair.quoteCoinSymbol.toLowerCase();
     String e = coinTradingPair.exchangeName.toLowerCase();
-    if(this._coinTradingPairMap[b] != null && this._coinTradingPairMap[b][q] != null
-        && this._coinTradingPairMap[b][q][e] != null){
-      this._coinTradingPairMap[b][q][e] = null;
+    if(this._exchangeDataMap[b] != null && this._exchangeDataMap[b][q] != null
+        && this._exchangeDataMap[b][q][e] != null){
+      this._exchangeDataMap[b][q][e] = null;
     }
   }
 
-  /// Completely clears out the [_coinTradingPairMap] and all of it's information.
+  /// Completely clears out the [_exchangeDataMap] and all of it's information.
   ///
   void clear(){
-    this._coinTradingPairMap.clear();
+    this._exchangeDataMap.clear();
   }
 }
