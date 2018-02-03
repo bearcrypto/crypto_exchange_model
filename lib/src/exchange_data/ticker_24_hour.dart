@@ -67,6 +67,18 @@ class Ticker24Hour extends ExchangeData{
     }
   }
 
+  void update(ExchangeData exchangeData){
+    if(exchangeData is Ticker24Hour){
+      if(this.volume24Hour != null) exchangeData.volume24Hour = this.volume24Hour;
+      if(this.openPrice24Hour != null) exchangeData.openPrice24Hour = this.openPrice24Hour;
+      if(this.highPrice24Hour != null) exchangeData.highPrice24Hour = this.highPrice24Hour;
+      if(this.lowPrice24Hour != null) exchangeData.lowPrice24Hour = this.lowPrice24Hour;
+      if(this.currentPrice != null) exchangeData.currentPrice = this.currentPrice;
+      if(this.priceFlag != null) exchangeData.priceFlag = this.priceFlag;
+      super.update(exchangeData);
+    }
+  }
+
   @override
   Map toMap(){
     Map objectMap = {};

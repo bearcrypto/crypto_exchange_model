@@ -23,12 +23,38 @@ abstract class ExchangeData {
     this.tradingPair = new CoinTradingPair.fromMap(objectMap);
   }
 
+  void update(ExchangeData exchangeData){
+    if(exchangeData.tradingPair != null) this.tradingPair = exchangeData.tradingPair;
+    if(exchangeData.timestamp != null) this.timestamp = exchangeData.timestamp;
+  }
+
   Map toMap(){
     Map objectMap = {};
     objectMap["timestamp"] = this.timestamp.millisecondsSinceEpoch;
     objectMap.addAll(this.tradingPair.toMap());
     return objectMap;
   }
+
+  static ExchangeData getExchangeDataMatchingCoinTradingPair(List<ExchangeData> listOfExchangeData, CoinTradingPair coinTradingPair){
+    ExchangeData result;
+    for(int i =  0; i < listOfExchangeData.length; i++){
+      if(CoinTradingPair.haveSameValue(listOfExchangeData[i].tradingPair, coinTradingPair)) {
+        result =  listOfExchangeData[i];
+        break;
+      }
+    }
+    return result;
+  }
+
+  static void saveExchangeDataInList(ExchangeData exchangeData, List<ExchangeData> listOfExchangeData){
+    ExchangeData matchingItem = getExchangeDataMatchingCoinTradingPair(listOfExchangeData, exchangeData.tradingPair);
+    if(matchingItem != null){
+        matchingItem.update(exchangeData);
+    } else {
+      listOfExchangeData.add(exchangeData);
+    }
+  }
+
 }
 
 /// Models a crypto coin pairing
@@ -81,6 +107,12 @@ class CoinTradingPair extends CoinPair {
     if(this.exchangeName != null) objectMap["exchangeName"] = this.exchangeName;
     objectMap.addAll(super.toMap());
     return objectMap;
+  }
+
+  static bool haveSameValue(CoinTradingPair pair1, CoinTradingPair pair2){
+    return (pair1.baseCoinSymbol.toLowerCase() == pair2.baseCoinSymbol.toLowerCase() &&
+        pair1.quoteCoinSymbol.toLowerCase() == pair2.quoteCoinSymbol.toLowerCase() &&
+    pair1.exchangeName.toLowerCase() == pair2.exchangeName.toLowerCase());
   }
 
 }

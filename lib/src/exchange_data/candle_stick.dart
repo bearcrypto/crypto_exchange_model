@@ -42,6 +42,35 @@ class CandleStick extends ExchangeData {
     if(objectMap["volume"] != null) this.volume = objectMap["volume"];
   }
 
+  void updateFromMap(Map objectMap){
+
+  }
+
+  static List<CandleStick> getMatchingCandleSticks(List<CandleStick> listOfCandleSticks,
+      Duration duration, CoinTradingPair coinTradingPair){
+    List<CandleStick> result = [];
+    listOfCandleSticks.forEach((candleStick){
+      if(candleStick.duration.inMilliseconds == duration.inMilliseconds){
+        result.add(candleStick);
+      }
+    });
+    return result;
+  }
+
+  static void saveCandleStickInList(CandleStick candleStick, List<CandleStick> listOfCandleSticks){
+    List<CandleStick> possibleMatches = getMatchingCandleSticks(listOfCandleSticks, candleStick.duration, candleStick.tradingPair);
+    bool updatedExistingCandleStick = false;
+    possibleMatches.forEach((possibleMatch){
+      if(possibleMatch.openTime == candleStick.openTime){
+        updatedExistingCandleStick = true;
+        possibleMatch.update(candleStick);
+      }
+    });
+    if(!updatedExistingCandleStick){
+      listOfCandleSticks.add(candleStick);
+    }
+  }
+
   @override
   Map toMap(){
     Map objectMap = {};

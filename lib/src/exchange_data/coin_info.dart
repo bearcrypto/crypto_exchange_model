@@ -58,6 +58,26 @@ class CoinInfo extends ExchangeData {
     return coinTradingPairs;
   }
 
+  void update(ExchangeData exchangeData){
+    if(exchangeData is CoinInfo){
+      if(this.name != null) exchangeData.name = this.name;
+      if(this.symbol != null) exchangeData.symbol = this.symbol;
+      if(this.algorithm != null) exchangeData.algorithm = this.algorithm;
+      if(this.proofType != null) exchangeData.proofType = this.proofType;
+      if(this.sortOrder != null) exchangeData.sortOrder = this.sortOrder;
+      if(this.imageUrl != null) exchangeData.imageUrl = this.imageUrl;
+      if(this.id != null) exchangeData.id = this.id;
+      if(this.description != null) exchangeData.description = this.description;
+      if(this.url != null) exchangeData.url = this.url;
+      if(this.startDate != null) exchangeData.startDate = this.startDate;
+      if(this.totalCoinSupply != null) exchangeData.totalCoinSupply = this.totalCoinSupply;
+      if(this.totalCoinsMined != null) exchangeData.totalCoinsMined = this.totalCoinsMined;
+      if(this.twitterHandle != null) exchangeData.twitterHandle = this.twitterHandle;
+      super.update(exchangeData);
+    }
+  }
+
+
   Map toMap(){
     Map objectMap = {};
     if(this.name != null) objectMap["name"] = this.name;

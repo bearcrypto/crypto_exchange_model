@@ -34,9 +34,18 @@ class TradeInfo extends ExchangeData{
     if(objectMap["amountTraded"] != null) this.amountTraded = objectMap["amountTraded"];
     if(objectMap["amountPaid"] != null) this.amountPaid = objectMap["amountPaid"];
     if(objectMap["flag"] != null){
-      this.amountPaid = objectMap["amountPaid"];
+      this.flag = objectMap["flag"];
     } else {
       this.flag = UNKNOWN_FLAG;
+    }
+  }
+
+  void update(ExchangeData exchangeData){
+    if(exchangeData is TradeInfo){
+      if(exchangeData.amountTraded != null) this.amountTraded = exchangeData.amountTraded;
+      if(exchangeData.amountTraded != null) this.amountPaid = exchangeData.amountTraded;
+      if(exchangeData.flag != null) this.flag = exchangeData.flag;
+      super.update(exchangeData);
     }
   }
 
