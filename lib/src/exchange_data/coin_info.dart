@@ -1,6 +1,6 @@
 part of crypto_exchange_model;
 
-class CoinInfo {
+class CoinInfo extends ExchangeData {
   String name;
   String symbol;
   String algorithm;
@@ -15,18 +15,18 @@ class CoinInfo {
   double totalCoinsMined;
   String twitterHandle;
 
-  CoinInfo(this.name, this.symbol, this.algorithm, this.proofType, this.sortOrder,
-      this.imageUrl, this.id);
+  CoinInfo(this.name, String symbol, this.algorithm, this.proofType, this.sortOrder,
+      this.imageUrl, this.id) : super(new CoinTradingPair(symbol, "NA", "NA"), new DateTime.now());
 
-  CoinInfo.extended(this.name, this.symbol, this.algorithm, this.proofType, this.sortOrder,
+  CoinInfo.extended(this.name, String symbol, this.algorithm, this.proofType, this.sortOrder,
       this.imageUrl, this.id, this.description, this.url, this.startDate, this.totalCoinSupply,
-      this.totalCoinsMined, this.twitterHandle);
+      this.totalCoinsMined, this.twitterHandle) : super(new CoinTradingPair(symbol, "NA", "NA"), new DateTime.now());
 
-  CoinInfo.nameAndSymbol(this.name, this.symbol);
+  CoinInfo.nameAndSymbol(this.name, String symbol) : super(new CoinTradingPair(symbol, "NA", "NA"), new DateTime.now());
 
-  CoinInfo.nameOnly(this.name);
+  CoinInfo.nameOnly(this.name) : super(new CoinTradingPair("NA", "NA", "NA"), new DateTime.now());
 
-  CoinInfo.fromMap(Map objectMap) {
+  CoinInfo.fromMap(Map objectMap) : super.fromMap(objectMap) {
     if(objectMap["name"] != null) this.name = objectMap["name"];
     if(objectMap["symbol"] != null) this.symbol = objectMap["symbol"];
     if(objectMap["algorithm"] != null) this.algorithm = objectMap["algorithm"];
@@ -73,6 +73,7 @@ class CoinInfo {
     if(this.totalCoinSupply != null) objectMap["totalCoinsSupply"] = this.totalCoinSupply;
     if(this.totalCoinsMined != null) objectMap["totalCoinsMined"] = this.totalCoinsMined;
     if(this.twitterHandle != null) objectMap["twitterHandle"] = this.twitterHandle;
+    objectMap.addAll(super.toMap());
     return objectMap;
   }
 
