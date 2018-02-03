@@ -55,6 +55,12 @@ abstract class ExchangeData {
     }
   }
 
+  static void saveListOfExchangeDataInList(List<ExchangeData> dataToBeStored, List<ExchangeData> listOfExchangeData){
+    dataToBeStored.forEach((data){
+      saveExchangeDataInList(data, listOfExchangeData);
+    });
+  }
+
 }
 
 /// Models a crypto coin pairing

@@ -78,6 +78,12 @@ class CandleStick extends ExchangeData {
     }
   }
 
+  static void saveListOfCandleSticksInList(List<CandleStick> candleSticksToBeStored, List<CandleStick> listOfCandleSticks){
+   candleSticksToBeStored.forEach((candleStick){
+     saveCandleStickInList(candleStick, listOfCandleSticks);
+   });
+  }
+
   @override
   Map toMap(){
     Map objectMap = {};
