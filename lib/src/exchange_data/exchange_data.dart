@@ -115,6 +115,30 @@ class CoinTradingPair extends CoinPair {
     return objectMap;
   }
 
+ static List<CoinTradingPair> getMatchingCoinTradingPairs(List<CoinTradingPair> listOfTradingPairs, CoinTradingPair coinTradingPair){
+   List<CoinTradingPair> result = [];
+   for(int i =  0; i < listOfTradingPairs.length; i++){
+     if(CoinTradingPair.haveSameValue(listOfTradingPairs[i], coinTradingPair)) {
+       result.add(listOfTradingPairs[i]);
+       break;
+     }
+   }
+   return result;
+ }
+
+ static void saveCoinTradingPairInList(CoinTradingPair coinTradingPair, List<CoinTradingPair> listOfCoinTradingPairs){
+   List<CoinTradingPair> matchingItems = getMatchingCoinTradingPairs(listOfCoinTradingPairs, coinTradingPair);
+   if(matchingItems.isEmpty){
+     listOfCoinTradingPairs.add(coinTradingPair);
+   }
+ }
+
+ static void saveListOfCoinTradingPairInList(List<CoinTradingPair> dataToBeStored, List<CoinTradingPair> coinTradingPairs){
+    dataToBeStored.forEach((data){
+      saveCoinTradingPairInList(data, coinTradingPairs);
+    });
+  }
+
   static bool haveSameValue(CoinTradingPair pair1, CoinTradingPair pair2){
     return (pair1.baseCoinSymbol.toLowerCase() == pair2.baseCoinSymbol.toLowerCase() &&
         pair1.quoteCoinSymbol.toLowerCase() == pair2.quoteCoinSymbol.toLowerCase() &&
